@@ -15,7 +15,7 @@ public class App
 
     public static void main(String[] args)
     {
-        MyProgram program = new MyProgram();
+        App program = new App();
         program.run();
     }
 
