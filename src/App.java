@@ -117,22 +117,26 @@ public class App {
         int yearWidth = 12;
         int nameWidth = 25;
 
+        String[][] displayGrid = new String[halfWay][4];
         for (int i = 0; i < halfWay; i++) {
             PresidentEntry entry1 = entries[i];
-
-            String leftName = entry1.guessed ? entry1.name : "";
-            System.out.printf("%-" + yearWidth + "s %-" + nameWidth + "s",
-                    entry1.years + ":", leftName);
+            displayGrid[i][0] = entry1.years + ":";
+            displayGrid[i][1] = entry1.guessed ? entry1.name : "";
 
             int rightIndex = i + halfWay;
             if (rightIndex < totalEntries) {
                 PresidentEntry entry2 = entries[rightIndex];
-                String rightName = entry2.guessed ? entry2.name : "";
-                System.out.printf("%-" + yearWidth + "s %-" + nameWidth + "s%n",
-                        entry2.years + ":", rightName);
+                displayGrid[i][2] = entry2.years + ":";
+                displayGrid[i][3] = entry2.guessed ? entry2.name : "";
             } else {
-                System.out.println();
+                displayGrid[i][2] = "";
+                displayGrid[i][3] = "";
             }
+        }
+
+        for (int i = 0; i < halfWay; i++) {
+            System.out.printf("%-" + yearWidth + "s %-" + nameWidth + "s%-" + yearWidth + "s %-" + nameWidth + "s%n",
+                    displayGrid[i][0], displayGrid[i][1], displayGrid[i][2], displayGrid[i][3]);
         }
     }
 
